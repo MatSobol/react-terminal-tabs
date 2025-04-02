@@ -96,6 +96,9 @@ const terminalStyle = {
 
 <Terminal commands={commands} terminalStyle={terminalStyle} />
 ```
+#### Change tab name
+Just double click on tab and press enter when finished.
+<img src="https://github.com/user-attachments/assets/2e4188ab-d73c-4532-9d9c-489b7066344d" width="100%">
 
 ### Props
 | name | description
