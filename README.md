@@ -1,3 +1,4 @@
+[![Edit react-terminal-tabs](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/cl2997?migrateFrom=56852t&embed=1&file=%2Fsrc%2FApp.tsx)
 ### Instalation 
 ```
 npm i react-terminal-tabs
