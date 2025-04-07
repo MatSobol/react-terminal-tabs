@@ -5,11 +5,11 @@ interface Commands {
     [key: string]: CommandFunction;
 }
 
-declare const Terminal: ({ commands, executeOnNewTabClient, executeOnRemoveTabClient, terminalStyle, }: {
+declare const Terminal: ({ commands, executeOnNewTab, executeOnRemoveTab, terminalStyle, }: {
     commands: Commands;
-    executeOnNewTabClient?: (() => void) | null;
-    executeOnRemoveTabClient?: ((idx: number) => void) | null;
+    executeOnNewTab?: (() => void) | null;
+    executeOnRemoveTab?: ((idx: number) => void) | null;
     terminalStyle?: React.CSSProperties | null;
 }) => react_jsx_runtime.JSX.Element;
 
-export { Terminal as default };
+export { Terminal };

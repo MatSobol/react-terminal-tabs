@@ -12,7 +12,7 @@ export const findAndExecuteCommand = async (
   tabsProps: ITabProps,
   setCarotPos: React.Dispatch<React.SetStateAction<number>>
 ) => {
-  const currentCommand =
+  let currentCommand =
     commandsProps.currentCommandRef.current[tabsProps.currTabNum];
   if (currentCommand === "clear" || currentCommand === "cls") {
     clean(commandsProps, tabsProps, setCarotPos);
@@ -20,6 +20,13 @@ export const findAndExecuteCommand = async (
   }
 
   let result: any = "Command not found";
+
+  const regex = />\s*(\S+)$/;
+  const match = currentCommand.match(regex);
+  const fileDownload = match ? match[1] : null;
+
+  currentCommand = currentCommand.replace(regex, "").trim();
+
   const argv = currentCommand.split(" ");
   if (argv[0] in commandsProps.commands) {
     try {
@@ -39,9 +46,6 @@ export const findAndExecuteCommand = async (
   }
   commandsProps.executingCommandsRef.current[tabsProps.currTabNum] = null;
   if (signal.aborted) return;
-  const regex = />\s*(\S+)$/;
-  const match = currentCommand.match(regex);
-  const fileDownload = match ? match[1] : null;
   if (fileDownload) {
     result = download(result, fileDownload);
   }
@@ -106,7 +110,7 @@ const checkParams = (
   signal: AbortSignal
 ) => {
   const res = [];
-  var fnStr = func.toString().split("\n")[0].split("(")[1].split(")")[0];
+  var fnStr = func.toString().split("{")[0].split("=>")[0];
   if (fnStr.includes("idx")) {
     res.push(idx);
   }

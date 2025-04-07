@@ -1,8 +1,8 @@
 import "../styles/Tabs.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
+import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { addTab, changeTab, removeTab } from "../hooks/Tabs";
 import { useState } from "react";
 

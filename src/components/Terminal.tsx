@@ -6,13 +6,13 @@ import { Commands } from "../interfaces/CommandsInterace";
 
 export const Terminal = ({
   commands,
-  executeOnNewTabClient = null,
-  executeOnRemoveTabClient = null,
+  executeOnNewTab = null,
+  executeOnRemoveTab = null,
   terminalStyle = null,
 }: {
   commands: Commands;
-  executeOnNewTabClient?: (() => void) | null;
-  executeOnRemoveTabClient?: ((idx: number) => void) | null;
+  executeOnNewTab?: (() => void) | null;
+  executeOnRemoveTab?: ((idx: number) => void) | null;
   terminalStyle?: React.CSSProperties | null;
 }) => {
   const [tabs, setTabs] = useState(["Tab 1", "Tab 2", "Tab 3"]);
@@ -34,9 +34,9 @@ export const Terminal = ({
     null,
   ]);
 
-  const executeOnNewTab = () => {
-    if (executeOnNewTabClient) {
-      executeOnNewTabClient();
+  const executeOnNewTabTerminal = () => {
+    if (executeOnNewTab) {
+      executeOnNewTab();
     }
     setPreviousCommandsList((list) => [...list, []]);
     setCurrentCommands((list) => [...list, ""]);
@@ -47,9 +47,9 @@ export const Terminal = ({
     ];
   };
 
-  const executeOnRemoveTab = (idx: number) => {
-    if (executeOnRemoveTabClient) {
-      executeOnRemoveTabClient(idx);
+  const executeOnRemoveTabTerminal = (idx: number) => {
+    if (executeOnRemoveTab) {
+      executeOnRemoveTab(idx);
     }
     setPreviousCommandsList((el) =>
       el.filter((_, i) => {
@@ -91,8 +91,8 @@ export const Terminal = ({
         setTabs={setTabs}
         currTabNum={currTabNum}
         setCurrTabNum={setCurrTabNum}
-        executeOnNewTab={executeOnNewTab}
-        executeOnRemoveTab={executeOnRemoveTab}
+        executeOnNewTab={executeOnNewTabTerminal}
+        executeOnRemoveTab={executeOnRemoveTabTerminal}
         setIsInput={setIsInput}
       />
       <CommandList
