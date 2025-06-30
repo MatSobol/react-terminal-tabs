@@ -20,7 +20,7 @@ export interface ICommandProps {
     setCarotPos: React.Dispatch<React.SetStateAction<number>>;
     carotRef: React.RefObject<HTMLDivElement | null>;
     carotPosRef: React.RefObject<number>;
-    showBlinkTimeoutId: React.RefObject<number>;
+    showBlinkTimeoutId: React.RefObject<ReturnType<typeof setTimeout> | null>;
     showBlink: boolean;
     setShowBlink: React.Dispatch<React.SetStateAction<boolean>>;
   }

@@ -3,10 +3,10 @@ import {
   ITabProps,
 } from "../../interfaces/CommandListInterfaces";
 import { CommandFunction, Commands } from "../../interfaces/CommandsInterace";
-import { addCommandToPreviousList, setCurrentCommandByIdx } from "./Utility";
+import { useAddCommandToPreviousList, useSetCurrentCommandByIdx } from "./Utility";
 import mime from "mime";
 
-export const findAndExecuteCommand = async (
+export const useFindAndExecuteCommand = async (
   signal: AbortSignal,
   commandsProps: ICommandProps,
   tabsProps: ITabProps,
@@ -15,7 +15,7 @@ export const findAndExecuteCommand = async (
   let currentCommand =
     commandsProps.currentCommandRef.current[tabsProps.currTabNum];
   if (currentCommand === "clear" || currentCommand === "cls") {
-    clean(commandsProps, tabsProps, setCarotPos);
+    useClean(commandsProps, tabsProps, setCarotPos);
     return;
   }
 
@@ -30,7 +30,7 @@ export const findAndExecuteCommand = async (
   const argv = currentCommand.split(" ");
   if (argv[0] in commandsProps.commands) {
     try {
-      result = await runCommand(
+      result = await useRunCommand(
         commandsProps.commands,
         argv,
         tabsProps.currTabNum,
@@ -52,12 +52,12 @@ export const findAndExecuteCommand = async (
   if (typeof result !== "string") {
     result = `result not type of string but ${typeof result}`;
   }
-  addCommandToPreviousList(
+  useAddCommandToPreviousList(
     [currentCommand, result],
     commandsProps.setPreviousCommandsList,
     tabsProps.currTabNum
   );
-  setCurrentCommandByIdx(
+  useSetCurrentCommandByIdx(
     commandsProps.setCurrentCommands,
     tabsProps.currTabNum,
     ""
@@ -65,12 +65,12 @@ export const findAndExecuteCommand = async (
   if (tabsProps.currTabNumRef.current === tabsProps.currTabNum) setCarotPos(0);
 };
 
-const clean = (
+const useClean = (
   commandsProps: ICommandProps,
   tabsProps: ITabProps,
   setCarotPos: React.Dispatch<React.SetStateAction<number>>
 ) => {
-  setCurrentCommandByIdx(
+  useSetCurrentCommandByIdx(
     commandsProps.setCurrentCommands,
     tabsProps.currTabNum,
     ""
@@ -83,7 +83,7 @@ const clean = (
   return;
 };
 
-const runCommand = async (
+const useRunCommand = async (
   commands: Commands,
   argv: string[] = [],
   idx: number,

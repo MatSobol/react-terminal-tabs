@@ -3,15 +3,15 @@ import {
   ICursorProps,
   ITabProps,
 } from "../../interfaces/CommandListInterfaces";
-import { findAndExecuteCommand } from "./ExecuteCommand";
+import { useFindAndExecuteCommand } from "./ExecuteCommand";
 import {
-  addCommandToPreviousList,
-  moveCarotWithoutBlink,
-  setCurrentCommandAtPosition,
-  setCurrentCommandByIdx,
+  useAddCommandToPreviousList,
+  useMoveCarotWithoutBlink,
+  useSetCurrentCommandAtPosition,
+  useSetCurrentCommandByIdx,
 } from "./Utility";
 
-export const handleInput = (
+export const useHandleInput = (
   commandsProps: ICommandProps,
   cursorProps: ICursorProps,
   tabsProps: ITabProps
@@ -45,7 +45,7 @@ export const handleInput = (
           return;
         }
         if (commandsMatched.length === 1) {
-          setCurrentCommandByIdx(
+          useSetCurrentCommandByIdx(
             commandsProps.setCurrentCommands,
             tabsProps.currTabNum,
             commandsMatched[0]
@@ -60,13 +60,13 @@ export const handleInput = (
         )
           i++;
         const newCurrCommand = commandsMatched[0].slice(0, i);
-        setCurrentCommandByIdx(
+        useSetCurrentCommandByIdx(
           commandsProps.setCurrentCommands,
           tabsProps.currTabNum,
           newCurrCommand
         );
         cursorProps.setCarotPos(newCurrCommand.length);
-        addCommandToPreviousList(
+        useAddCommandToPreviousList(
           [
             currentCommand[tabsProps.currTabNum],
             commandsMatched.toString().replace(/,/g, ", "),
@@ -78,7 +78,7 @@ export const handleInput = (
 
       case "ArrowLeft":
         cursorProps.setCarotPos((el) => Math.max(0, el - 1));
-        moveCarotWithoutBlink(e, cursorProps);
+        useMoveCarotWithoutBlink(e, cursorProps);
         return;
 
       case "ArrowRight":
@@ -89,7 +89,7 @@ export const handleInput = (
             el + 1
           )
         );
-        moveCarotWithoutBlink(e, cursorProps);
+        useMoveCarotWithoutBlink(e, cursorProps);
         return;
 
       case "ArrowUp": {
@@ -107,7 +107,7 @@ export const handleInput = (
         const newVal =
           previousCommands[previousCommands.length - 1 - newIdx][0];
 
-        setCurrentCommandByIdx(
+        useSetCurrentCommandByIdx(
           commandsProps.setCurrentCommands,
           tabsProps.currTabNum,
           newVal
@@ -138,7 +138,7 @@ export const handleInput = (
           newVal = "";
         }
 
-        setCurrentCommandByIdx(
+        useSetCurrentCommandByIdx(
           commandsProps.setCurrentCommands,
           tabsProps.currTabNum,
           newVal
@@ -156,7 +156,7 @@ export const handleInput = (
         const signal = controller.signal;
         commandsProps.executingCommandsRef.current[tabsProps.currTabNum] =
           controller;
-        findAndExecuteCommand(
+        useFindAndExecuteCommand(
           signal,
           commandsProps,
           tabsProps,
@@ -171,7 +171,7 @@ export const handleInput = (
         if (e.ctrlKey) {
           return;
         }
-        newKey(
+        useNewKey(
           eventKey,
           cursorProps.setCarotPos,
           currentCommand[tabsProps.currTabNum],
@@ -186,12 +186,12 @@ export const handleInput = (
             commandsProps.executingCommandsRef.current[tabsProps.currTabNum];
           if (controller) {
             controller.abort();
-            addCommandToPreviousList(
+            useAddCommandToPreviousList(
               [currentCommand[tabsProps.currTabNum], "^C"],
               commandsProps.setPreviousCommandsList,
               tabsProps.currTabNum
             );
-            setCurrentCommandByIdx(
+            useSetCurrentCommandByIdx(
               commandsProps.setCurrentCommands,
               tabsProps.currTabNum,
               ""
@@ -203,7 +203,7 @@ export const handleInput = (
           }
           break;
         }
-        newKey(
+        useNewKey(
           eventKey,
           cursorProps.setCarotPos,
           currentCommand[tabsProps.currTabNum],
@@ -214,7 +214,7 @@ export const handleInput = (
         break;
 
       default:
-        newKey(
+        useNewKey(
           eventKey,
           cursorProps.setCarotPos,
           currentCommand[tabsProps.currTabNum],
@@ -227,7 +227,7 @@ export const handleInput = (
   return func;
 };
 
-const newKey = (
+const useNewKey = (
   eventKey: any,
   setCarotPos: React.Dispatch<React.SetStateAction<number>>,
   currentCommand: string,
@@ -238,7 +238,7 @@ const newKey = (
   if (eventKey.length !== 1) return;
   setCarotPos((el) => el + 1);
 
-  setCurrentCommandAtPosition(
+  useSetCurrentCommandAtPosition(
     currentCommand,
     setCurrentCommands,
     currTabNum,

@@ -1,6 +1,6 @@
 import { ICursorProps } from "../../interfaces/CommandListInterfaces";
 
-export const setCurrentCommandAtPosition = (
+export const useSetCurrentCommandAtPosition = (
   currentCommand: string,
   setCurrentCommands: React.Dispatch<React.SetStateAction<string[]>>,
   idx: number,
@@ -8,10 +8,10 @@ export const setCurrentCommandAtPosition = (
   pos: number
 ) => {
   const text = currentCommand.slice(0, pos) + val + currentCommand.slice(pos);
-  setCurrentCommandByIdx(setCurrentCommands, idx, text);
+  useSetCurrentCommandByIdx(setCurrentCommands, idx, text);
 };
 
-export const setCurrentCommandByIdx = (
+export const useSetCurrentCommandByIdx = (
   setCurrentCommands: React.Dispatch<React.SetStateAction<string[]>>,
   idx: number,
   val: string
@@ -24,7 +24,7 @@ export const setCurrentCommandByIdx = (
   );
 };
 
-export const addCommandToPreviousList = (
+export const useAddCommandToPreviousList = (
   value: [string, string],
   setPreviousCommandsList: React.Dispatch<
     React.SetStateAction<[string, string][][]>
@@ -38,17 +38,17 @@ export const addCommandToPreviousList = (
   );
 };
 
-export const moveCarotWithoutBlink = (
+export const useMoveCarotWithoutBlink = (
   e: KeyboardEvent | React.MouseEvent<HTMLSpanElement>,
   cursorProps: ICursorProps
 ) => {
   e.preventDefault();
   cursorProps.setShowBlink(false);
-  if (cursorProps.showBlinkTimeoutId.current !== -1) {
+  if (cursorProps.showBlinkTimeoutId.current !== null) {
     clearTimeout(cursorProps.showBlinkTimeoutId.current);
   }
   cursorProps.showBlinkTimeoutId.current = setTimeout(() => {
     cursorProps.setShowBlink(true);
-    cursorProps.showBlinkTimeoutId.current = -1;
+    cursorProps.showBlinkTimeoutId.current = null;
   }, 500);
 };

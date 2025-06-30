@@ -1,6 +1,6 @@
-import { setCurrentCommandAtPosition } from "./Utility";
+import { useSetCurrentCommandAtPosition } from "./Utility";
 
-export const handlePaste = (
+export const useHandlePaste = (
   setCurrentCommands: React.Dispatch<React.SetStateAction<string[]>>,
   carotPosRef: React.RefObject<number>,
   setCarotPos: React.Dispatch<React.SetStateAction<number>>,
@@ -12,7 +12,7 @@ export const handlePaste = (
       return;
     }
     const text = e.clipboardData.getData("text");
-    setCurrentCommandAtPosition(
+    useSetCurrentCommandAtPosition(
       currentCommandRef.current[currTabNum],
       setCurrentCommands,
       currTabNum,

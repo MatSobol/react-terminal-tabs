@@ -1,4 +1,4 @@
-export const handleEnableInput = (
+export const useHandleEnableInput = (
   commandsContainerRef: React.RefObject<HTMLDivElement | null>,
   setIsInput: React.Dispatch<React.SetStateAction<boolean>>
 ) => {

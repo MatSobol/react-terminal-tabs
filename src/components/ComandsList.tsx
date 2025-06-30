@@ -5,8 +5,8 @@ import {
   ICursorProps,
   ITabProps,
 } from "../interfaces/CommandListInterfaces";
-import { useManageInput } from "../hooks/CommandList";
-import { moveCarotWithoutBlink } from "../hooks/CommandList/Utility";
+import { useManageInput } from "../utility/CommandList";
+import { useMoveCarotWithoutBlink } from "../utility/CommandList/Utility";
 
 type CommandFunction<T extends any[] = any[]> = (
   ...args: T
@@ -112,7 +112,7 @@ export const CommandList = memo(
     const handleChangeCarrotOnCLick = (e: any, idx: number) => {
       setIsInput(true);
       setCarotPos(idx);
-      moveCarotWithoutBlink(e, cursorProps);
+      useMoveCarotWithoutBlink(e, cursorProps);
       e.stopPropagation();
     };
 

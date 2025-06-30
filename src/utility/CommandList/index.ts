@@ -4,24 +4,24 @@ import {
   ICursorProps,
   ITabProps,
 } from "../../interfaces/CommandListInterfaces";
-import { handlePaste } from "./HandlePaste";
-import { handleEnableInput } from "./HandleEnableInput";
-import { handleInput } from "./HandleInput";
+import { useHandlePaste } from "./HandlePaste";
+import { useHandleEnableInput } from "./HandleEnableInput";
+import { useHandleInput } from "./HandleInput";
 
 export const useManageInput = (
   commandsProps: ICommandProps,
   cursorProps: ICursorProps,
   tabsProps: ITabProps
 ) => {
-  const input = handleInput(commandsProps, cursorProps, tabsProps);
-  const paste = handlePaste(
+  const input = useHandleInput(commandsProps, cursorProps, tabsProps);
+  const paste = useHandlePaste(
     commandsProps.setCurrentCommands,
     cursorProps.carotPosRef,
     cursorProps.setCarotPos,
     tabsProps.currTabNum,
     commandsProps.currentCommandRef
   );
-  const enableInput = handleEnableInput(
+  const enableInput = useHandleEnableInput(
     commandsProps.commandsContainerRef,
     commandsProps.setIsInput
   );

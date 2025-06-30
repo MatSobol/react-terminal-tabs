@@ -1,3 +1,68 @@
+.box {
+  position: fixed;
+  background-color: #4f9aff;
+  z-index: 20;
+  opacity: 0.3;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+}
+
+.corner {
+  width: 50vw;
+  height: 50vh;
+}
+
+.leftBox {
+  left: 0;
+  top: 0;
+  width: 50vw;
+  height: 100vh;
+}
+
+.topBox {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+}
+
+.rightBox {
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+}
+
+.bottomBox {
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+}
+
+.topLeftBox {
+  left: 0;
+  top: 0;
+}
+
+.topRightBox {
+  right: 0;
+  top: 0;
+}
+
+.bottomLeftBox {
+  left: 0;
+  bottom: 0;
+}
+
+.bottomRightBox {
+  right: 0;
+  bottom: 0;
+}
+
 .tabsContainer {
   color: var(--text-color);
   text-align: start;
@@ -7,9 +72,14 @@
   padding-top: 6px;
   background-color: var(--header-background-color);
   overflow: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
 }
 
-.tabsContainer::-webkit-scrollbar{
+.tabsContainer::-webkit-scrollbar {
   background-color: var(--background-default);
 }
 
@@ -35,6 +105,11 @@
   padding-inline: 12px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
 }
 
 .tabsContainer > .tab:hover:not(.active) {
@@ -73,4 +148,125 @@
 
 .tab > .add {
   font-size: 13px;
+}
+.topMenuContainer {
+  color: var(--text-color);
+  text-align: start;
+  display: flex;
+  position: relative;
+}
+
+.tabsContainer {
+  padding-top: 6px;
+  background-color: var(--header-background-color);
+  padding-left: 12px;
+  display: flex;
+  align-items: end;
+  overflow: auto;
+}
+
+.tabsContainer::-webkit-scrollbar {
+  background-color: var(--background-default);
+}
+
+.tabsContainer::-webkit-scrollbar-track {
+  background-color: var(--background-default);
+}
+
+.tabsContainer::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: var(--text-color);
+}
+
+.topMenuContainer > * > .tab {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 32px;
+  width: 150px;
+  padding-block: 5px;
+  padding-inline: 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.topMenuContainer > * > .tab:hover:not(.active) {
+  background-color: var(--header-background-color-hover);
+}
+.topMenuContainer > * > .tab.active {
+  background-color: var(--background-default);
+}
+
+.topMenuContainer > .tabsContainer > .tab > .content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+.topMenuContainer > .tabsContainer > .tab > .close {
+  font-size: 11px;
+}
+
+.topMenuContainer > .tabsContainer > .tab > input {
+  all: unset;
+  width: 100%;
+  background-color: var(--header-background-color);
+  color: var(--text-color);
+  font-size: 80%;
+  border: 1px solid var(--active-color);
+  border-radius: 3px;
+  padding-left: 4px;
+}
+
+.topMenuContainer > .tabsContainer > .tab > .close:hover {
+  color: red;
+}
+
+.topMenuContainer > .tabsContainer > .tab > .add {
+  font-size: 13px;
+}
+
+.topMenuContainer > .menu {
+  padding-top: 6px;
+  background-color: var(--header-background-color);
+  font-size: 15px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+.topMenuContainer > .menu > .tab > ul {
+  all: unset;
+  font-size: 18px;
+  position: absolute;
+  z-index: 1;
+  top: 38px;
+  right: 0%;
+  background-color: var(--header-background-color);
+  border-bottom-left-radius: 12px;
+}
+.topMenuContainer > .menu > .tab > ul > li {
+  all: unset;
+  display: block;
+  padding-block: 5px;
+  padding-inline: 12px;
+  white-space: nowrap;
+}
+
+.topMenuContainer > .menu > .tab > ul > li > input {
+  all: unset;
+  width: 0px;
+  height: 0px;
+}
+
+.topMenuContainer > .menu > .tab > ul > li:hover {
+  background-color: var(--header-background-color-hover);
+}
+
+.topMenuContainer > .fill {
+  flex-grow: 1;
+  background-color: var(--header-background-color);
 }
