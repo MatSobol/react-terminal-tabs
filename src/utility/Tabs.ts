@@ -155,7 +155,7 @@ const useHandleMouseMove = (
 
 const useHandleMouseUp = (
   mousePos: React.RefObject<number[]>,
-  timeoutRef: React.RefObject<NodeJS.Timeout | null>,
+  timeoutRef: React.RefObject<ReturnType<typeof setTimeout> | null>,
   setIsMoving: React.Dispatch<React.SetStateAction<boolean>>,
   currentBoxRef: React.RefObject<number>,
   setTerminalPos: React.Dispatch<React.SetStateAction<number[]>>,

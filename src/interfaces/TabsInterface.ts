@@ -1,5 +1,5 @@
 export interface IuseHandleMouseDownProps {
-  timeoutRef: React.RefObject<NodeJS.Timeout | null>;
+  timeoutRef: React.RefObject<ReturnType<typeof setTimeout> | null>;
   setIsMoving: React.Dispatch<React.SetStateAction<boolean>>;
   mousePos: React.RefObject<number[]>;
   currentBoxRef: React.RefObject<number>;
