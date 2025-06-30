@@ -74,6 +74,22 @@ const commands = {
   executeOnRemoveTab={(idx: number) => console.log(`closed tab ${idx}`)}
 />
 ```
+
+#### Menu
+
+![image](https://github.com/user-attachments/assets/44e98649-90c6-40e4-8902-7bcb86cca29c)
+
+| Options     | Description                                      |
+|-------------|-------------------------------------------------|
+| `save`      | Saves the current terminal status to localStorage |
+| `save as file` | Downloads the terminal status as a file         |
+| `load`      | Loads the terminal status from a file           |
+| `restart`   | Restarts the terminal and clears localStorage   |
+
+#### Movable
+
+![output](https://github.com/user-attachments/assets/499f2f44-a5a8-4e07-87c9-d255446e4abf)
+
 #### Download
 If commands response is to big or it can't be parsed to string, like image, you can download it
 <img src="https://github.com/user-attachments/assets/535235c2-b5c8-41ad-961e-78a79426fe9c" width="100%">
@@ -108,5 +124,10 @@ Just double click on tab and press enter when finished.
 | `executeOnNewTab` | Function that gets called when new tab is opened
 | `executeOnRemoveTab` | Function that gets called when tab is close
 | `terminalStyle` | Pass CSSProperties to chagne style
+| `localStorageName` | Prefix used for variables storing data in local storage
+| `isMovable`        | Boolean to make the terminal movable                |
+| `zIndex`           | z-index of the terminal                              |
+| `id`               | ID used when there are multiple terminals           |
+| `setOrder` | change order of terminals so the focused one is on top
 
 
