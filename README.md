@@ -90,8 +90,33 @@ const commands = {
 
 ![output](https://github.com/user-attachments/assets/499f2f44-a5a8-4e07-87c9-d255446e4abf)
 
+if there are multiple terminals in order for terminal currently being used to be on top use below code:
+```
+const [order, setOrder] = useState([0, 1]);
+return (
+  <>
+    <div style={{ height: "600px", width: "800px" }}>
+      <Terminal
+        commands={commands}
+        isMovable={true}
+        id={order[0]}
+        setOrder={setOrder}
+      />
+    </div>
+    <div style={{ height: "600px", width: "800px" }}>
+      <Terminal
+        commands={commands}
+        isMovable={true}
+        id={order[1]}
+        setOrder={setOrder}
+      />
+    </div>
+  </>
+);
+```
+
 #### Download
-If commands response is to big or it can't be parsed to string, like image, you can download it
+If commands response is too big or it can't be parsed to string, like image, you can download it
 <img src="https://github.com/user-attachments/assets/535235c2-b5c8-41ad-961e-78a79426fe9c" width="100%">
 
 <p align="center">
